@@ -21,4 +21,5 @@ public class MarsRoverMove {
         }
         return position;
     }
+
 }
