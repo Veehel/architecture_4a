@@ -19,5 +19,4 @@ class MarsRoverMoveTest {
         Assertions.assertThat(newPosition).isEqualTo(Position.of(32, 14, Direction.SOUTH));
     }
 
-
 }
