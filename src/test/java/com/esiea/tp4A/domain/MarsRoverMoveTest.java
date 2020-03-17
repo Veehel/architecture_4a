@@ -33,5 +33,18 @@ class MarsRoverMoveTest {
         Assertions.assertThat(newPosition).isEqualTo(Position.of(32, 13, Direction.SOUTH));
     }
 
+    @Test
+    void right_move() {
+        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.SOUTH);
+        Position newPosition = marsRover.move("r");
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(31, 14, Direction.SOUTH));
+    }
+
+    @Test
+    void left_move() {
+        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.SOUTH);
+        Position newPosition = marsRover.move("l");
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(33, 14, Direction.SOUTH));
+    }
 
 }
