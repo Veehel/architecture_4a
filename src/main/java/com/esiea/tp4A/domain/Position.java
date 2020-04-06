@@ -1,5 +1,6 @@
 package com.esiea.tp4A.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public interface Position {
@@ -7,7 +8,6 @@ public interface Position {
     int getX();
     int getY();
     Direction getDirection();
-
     static Position of(int x, int y, Direction direction) {
         return new FixedPosition(x, y, direction);
     }
@@ -38,7 +38,6 @@ public interface Position {
         public Direction getDirection() {
             return direction;
         }
-
 
         @Override
         public String toString() {

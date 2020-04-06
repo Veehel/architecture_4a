@@ -3,7 +3,6 @@ package com.esiea.tp4A.domain;
 public class MarsRoverMove {
 
     private Position position;
-
     public MarsRoverMove(int x, int y, Direction direction){
         position = Position.of(x,y,direction);
     }
@@ -27,5 +26,4 @@ public class MarsRoverMove {
         }
         return position;
     }
-
-}
+  }

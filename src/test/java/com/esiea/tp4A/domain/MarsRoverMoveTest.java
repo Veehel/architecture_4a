@@ -2,7 +2,11 @@ package com.esiea.tp4A.domain;
 
 
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 class MarsRoverMoveTest {
     @Test
@@ -46,5 +50,4 @@ class MarsRoverMoveTest {
         Position newPosition = marsRover.move("l");
         Assertions.assertThat(newPosition).isEqualTo(Position.of(33, 14, Direction.SOUTH));
     }
-
 }
