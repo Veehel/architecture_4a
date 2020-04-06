@@ -4,12 +4,12 @@ import java.util.Set;
 
 public class Mars implements PlanetMap{
 
-    public final int xMax;
-    public final int xMin;
-    public final int yMax;
-    public final int yMin;
+    private final int xMax;
+    private final int xMin;
+    private final int yMax;
+    private final int yMin;
 
-    public Mars(int xMax, int xMin, int yMax, int yMin) {
+    public Mars() {
         this.xMax = 50;
         this.xMin = -49;
         this.yMax = 50;
