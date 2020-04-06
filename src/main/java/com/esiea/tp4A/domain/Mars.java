@@ -9,12 +9,20 @@ import static java.lang.Math.round;
 
 public class Mars implements PlanetMap{
 
+<<<<<<< HEAD
     public final int xMax;
     public final int xMin;
     public final int yMax;
     public final int yMin;
     public final int size=100;
     public final int [][] mars;
+=======
+    private final int xMax;
+    private final int xMin;
+    private final int yMax;
+    private final int yMin;
+
+>>>>>>> ac323c1... limit move and them tests
     public Mars() {
         this.xMax = 50;
         this.xMin = -49;
