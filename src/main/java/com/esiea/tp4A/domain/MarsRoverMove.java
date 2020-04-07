@@ -17,8 +17,8 @@ public class MarsRoverMove {
         char singleCommand = command.charAt(0);
         if ('f' == singleCommand){position = position.forwardX();}
         else if ('b' == singleCommand){position = position.backwardX();}
-        else if ('l' == singleCommand){position = Position.of(position.getX(), position.getY(), position.getDirection().right());} // juste un changement de direction
-        else if ('r' == singleCommand){position = Position.of(position.getX(), position.getY(), position.getDirection().left());}
+        else if ('l' == singleCommand){position = Position.of(position.getX(), position.getY(), position.getDirection().left());} // juste un changement de direction
+        else if ('r' == singleCommand){position = Position.of(position.getX(), position.getY(), position.getDirection().right());}
         return position;
     }
   }
