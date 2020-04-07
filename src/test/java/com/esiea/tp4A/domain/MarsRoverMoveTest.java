@@ -20,59 +20,59 @@ class MarsRoverMoveTest {
     }
 
     @Test
-    void front_move() {
-        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.SOUTH);
+    void front_move_north() {
+        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.NORTH);
         Position newPosition = marsRover.move("f");
-        Assertions.assertThat(newPosition).isEqualTo(Position.of(32, 15, Direction.SOUTH));
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(32, 15, Direction.NORTH));
     }
 
     @Test
-    void front_move_max() {
-        MarsRoverMove marsRover = new MarsRoverMove(32, 50, Direction.SOUTH);
-        Position newPosition = marsRover.move("f");
-        Assertions.assertThat(newPosition).isEqualTo(Position.of(32, -49, Direction.SOUTH));
-    }
-
-    @Test
-    void back_move() {
+    void front_move_south() {
         MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.SOUTH);
-        Position newPosition = marsRover.move("b");
+        Position newPosition = marsRover.move("f");
         Assertions.assertThat(newPosition).isEqualTo(Position.of(32, 13, Direction.SOUTH));
     }
 
     @Test
-    void back_move_max() {
-        MarsRoverMove marsRover = new MarsRoverMove(32, -49, Direction.SOUTH);
+    void front_move_east() {
+        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.EAST);
+        Position newPosition = marsRover.move("f");
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(33, 14, Direction.EAST));
+    }
+
+    @Test
+    void front_move_west() {
+        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.WEST);
+        Position newPosition = marsRover.move("f");
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(31, 14, Direction.WEST));
+    }
+
+    @Test
+    void back_move_north() {
+        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.NORTH);
         Position newPosition = marsRover.move("b");
-        Assertions.assertThat(newPosition).isEqualTo(Position.of(32, 50, Direction.SOUTH));
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(32, 13, Direction.NORTH));
     }
 
     @Test
-    void right_move() {
+    void back_move_south() {
         MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.SOUTH);
-        Position newPosition = marsRover.move("r");
-        Assertions.assertThat(newPosition).isEqualTo(Position.of(31, 14, Direction.SOUTH));
+        Position newPosition = marsRover.move("b");
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(32, 15, Direction.SOUTH));
     }
 
     @Test
-    void right_move_max() {
-        MarsRoverMove marsRover = new MarsRoverMove(-49, 18, Direction.SOUTH);
-        Position newPosition = marsRover.move("r");
-        Assertions.assertThat(newPosition).isEqualTo(Position.of(50, 18, Direction.SOUTH));
+    void back_move_east() {
+        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.EAST);
+        Position newPosition = marsRover.move("b");
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(31, 14, Direction.EAST));
     }
 
     @Test
-    void left_move() {
-        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.SOUTH);
-        Position newPosition = marsRover.move("l");
-        Assertions.assertThat(newPosition).isEqualTo(Position.of(33, 14, Direction.SOUTH));
-    }
-
-    @Test
-    void left_move_max() {
-        MarsRoverMove marsRover = new MarsRoverMove(50, 18, Direction.SOUTH);
-        Position newPosition = marsRover.move("l");
-        Assertions.assertThat(newPosition).isEqualTo(Position.of(-49, 18, Direction.SOUTH));
+    void back_move_west() {
+        MarsRoverMove marsRover = new MarsRoverMove(32, 14, Direction.WEST);
+        Position newPosition = marsRover.move("b");
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(33, 14, Direction.WEST));
     }
 
 }
