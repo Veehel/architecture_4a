@@ -2,8 +2,6 @@ package com.esiea.tp4A.domain;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.lang.Math;
-
 import static java.lang.Math.random;
 import static java.lang.Math.round;
 
@@ -25,7 +23,7 @@ public class Mars implements PlanetMap{
 
         for (y = 0; y < this.size; y++) {
             for (x = 0; x < this.size; x++) {
-                this.mars[y][x] = 0;
+                this.mars[x][y] = 0;
             }
         }
         int spawnObstacles= (int) round(0.16*this.size*this.size);
@@ -34,8 +32,8 @@ public class Mars implements PlanetMap{
                 x = (int) (random() * this.size);
                 y = (int) (random() * this.size);
 
-                if (this.mars[y][x] == 0) {
-                    this.mars[y][x] = 1;
+                if (this.mars[x][y] == 0) {
+                    this.mars[x][y] = 1;
                     break;
                 }
             }
