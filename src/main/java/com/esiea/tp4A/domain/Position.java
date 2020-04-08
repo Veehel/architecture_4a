@@ -8,12 +8,13 @@ public interface Position {
     int getX();
     int getY();
     Direction getDirection();
+
     static Position of(int x, int y, Direction direction) {
         return new FixedPosition(x, y, direction);
     }
 
-    public Position forwardX();
-    public Position backwardX();
+    Position forwardX();
+    Position backwardX();
 
     final class FixedPosition implements Position {
 
