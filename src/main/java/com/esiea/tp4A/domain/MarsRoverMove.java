@@ -6,9 +6,9 @@ import java.util.Set;
 
 public class MarsRoverMove implements MarsRover {
 
-    private Position position;
-    private Set<Position> obstacles;
-    boolean foundObstacle=false;
+    private final Position position;
+    private final Set<Position> obstacles;
+    final boolean foundObstacle=false;
     private final int size=100;
     public MarsRoverMove(){
         this.position=Position.of(0,0,Direction.NORTH);
@@ -20,8 +20,10 @@ public class MarsRoverMove implements MarsRover {
     }
     @Override
     public MarsRover initialize(Position position){return new MarsRoverMove(position, this.obstacles);}
-   @Override
+    @Override
     public MarsRover updateMap(PlanetMap planetMap){return new MarsRoverMove(this.position,planetMap.obstaclePositions());}
+    @Override
+    public MarsRover configureLaserRange(int range) { return this; }
     public Position getPosition(){
         return position;
     }
