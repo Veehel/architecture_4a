@@ -29,30 +29,39 @@ public class MarsRoverMove implements MarsRover {
     public Position move (String command) {
         Position pos=this.position;
         Position tempo;
+        boolean shot = false;
 
         for (char commandLine:command.toCharArray()) {
             switch (commandLine){
-            /* Ajouter le test si obstacle ici, et sa destruction ensuite */
+                case 's' : // Si on a un 's', on le garde en mémoire en attendant la prochaine instruction
+                    shot = true;
+                    tempo=pos;
+                    break;
                 case 'f' :
-                tempo= pos.forwardX();
-                break;
+                    tempo= pos.forwardX();
+                    break;
                 case 'b' :
-                tempo = pos.backwardX();
-                break;
+                    tempo = pos.backwardX();
+                    break;
                 case 'l' :
-                tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().left());// juste un changement de direction
-                break;
+                    tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().left());// juste un changement de direction
+                    break;
                 case 'r' :
-                tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().right());
-                break;
+                    tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().right());
+                    break;
                 default:
                     tempo=pos;
                     break;
             }
             tempo=getSphericalPos(tempo);
-            if(isMovementPossible(tempo)){
+            if(isMovementPossible(tempo)){ // si pas d'obstacle affectation définitive
                 pos=tempo;
+            } else { // si obstacle, on regarde si 's' avant
+                if (shot) {
+                    this.obstacles.remove(tempo); // on détruit l'obstacle
+                }
             }
+            shot = false; // On reset la valeur pour les prochains mouvements
         }
         return pos;
     }
