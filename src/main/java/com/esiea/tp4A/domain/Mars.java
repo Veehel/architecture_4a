@@ -9,6 +9,7 @@ public class Mars implements PlanetMap{
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public final int xMax;
     public final int xMin;
     public final int yMax;
@@ -31,11 +32,23 @@ public class Mars implements PlanetMap{
 =======
     private final int size=100;
 >>>>>>> dd6a752... size corrections
+=======
+
+    private final int size=100;
+
+    public int getSize() {
+        return size;
+    }
+
+    public int[][] getMars() {
+        return mars;
+    }
+
+>>>>>>> 16fb45d... correcting test
     private final int [][] mars;
 
 >>>>>>> 7c62e5a... Correction Korekto
     public Mars() {
-        this.xMax = 50; this.xMin = -49; this.yMax =50; this.yMin = -49;
         this.mars = new int[this.size][this.size];
         int x, y;
         for (y = 0; y < this.size; y++) { for (x = 0; x < this.size; x++) { this.mars[x][y] = 0; } }

@@ -11,13 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MarsTest {
     @Test
-    void initMars() throws NoSuchFieldException,IllegalAccessException{
-        Mars mars=new Mars(); Field sField=mars.getClass().getDeclaredField("size");
-        int size=sField.getInt(mars);
+    void initMars() {
+        Mars mars=new Mars();
+        int size=mars.getSize();
         assertFalse(size<=0);
-        Field mapField=mars.getClass().getField("mars");
-        mapField.setAccessible(true);
-        int[][] map= (int[][]) mapField.get(mars);
+        int[][] map= mars.getMars();
         assertEquals(size,map.length);
         assertEquals(size,map[0].length);
         int k=0;
@@ -26,12 +24,10 @@ class MarsTest {
     }
 
 	@Test
-	void obstaclePositions() throws NoSuchFieldException,IllegalAccessException {
+	void obstaclePositions() {
 	    Mars mars=new Mars();
 	    Set<Position> obstacles=mars.obstaclePositions();
-        Field field=mars.getClass().getField("mars");
-        field.setAccessible(true);
-        int [][] map= (int[][]) field.get(mars);
+        int [][] map= mars.getMars();
         int offset = 1-map.length/2;
         for(int y=0;y<map.length;y++){
             for(int x=0;x<map[y].length;x++){
