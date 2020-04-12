@@ -90,4 +90,5 @@ public class PositionTest {
         Assertions.assertThat(stringPosition).isEqualTo("FixedPosition{x=12, y=13, direction=WEST" + '}');
     }
 
+
 }
