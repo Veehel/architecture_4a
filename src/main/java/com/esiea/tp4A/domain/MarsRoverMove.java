@@ -1,6 +1,5 @@
 package com.esiea.tp4A.domain;
 
-import java.io.PipedOutputStream;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,34 +8,37 @@ public class MarsRoverMove implements MarsRover {
     private final Position position;
     private final Set<Position> obstacles;
     private final int size=100;
+    private int range;
     public MarsRoverMove(){
         this.position=Position.of(0,0,Direction.NORTH);
         this.obstacles=new HashSet<>();
+        this.range=0;
+
     }
-    public MarsRoverMove(Position position, Set<Position> obstacles){
+    public MarsRoverMove(Position position, Set<Position> obstacles,int range){
         this.position= position;
         this.obstacles=obstacles;
+        this.range=range;
     }
     @Override
-    public MarsRover initialize(Position position){return new MarsRoverMove(position, this.obstacles);}
+    public MarsRover initialize(Position position){return new MarsRoverMove(position, this.obstacles,this.range);}
     @Override
-    public MarsRover updateMap(PlanetMap planetMap){return new MarsRoverMove(this.position,planetMap.obstaclePositions());}
+    public MarsRover updateMap(PlanetMap planetMap){return new MarsRoverMove(this.position,planetMap.obstaclePositions(),this.range);}
     @Override
-    public MarsRover configureLaserRange(int range) { return this; }
-    public Position getPosition(){
-        return position;
-    }
+    public MarsRover configureLaserRange(int range) { return new MarsRoverMove(this.position,this.obstacles,Math.max(range,0)); }
+    public Position getPosition(){ return position; }
 
     public Position move (String command) {
-        Position pos=this.position; Position tempo; boolean shot = false;
+        Position pos=this.position; Position tempo ; boolean shot = false;
         for (char commandLine:command.toCharArray()) { switch (commandLine){
-                case 's' : shot = true; tempo=pos; break;
-                case 'f' : tempo= pos.forwardX(); break;
-                case 'b' : tempo = pos.backwardX(); break;
-                case 'l' : tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().left());break;
-                case 'r' : tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().right());break;
-                default: tempo=pos; break; } tempo=getSphericalPos(tempo);
-            if(isMovementPossible(tempo)){ pos=tempo; } else { if (shot) { this.obstacles.remove(tempo); }} shot = false; } return pos;}
+                case 'f' : tempo= getSphericalPos(pos.forwardX());if(isMovementPossible(tempo)){pos=tempo;} break;
+                case 'b' : tempo = getSphericalPos(pos.backwardX());if(isMovementPossible(tempo)){pos=tempo;} break;
+                case 'l' : pos = Position.of(pos.getX(), pos.getY(), pos.getDirection().left());break;
+                case 'r' : pos = Position.of(pos.getX(), pos.getY(), pos.getDirection().right());break;
+                case 's' : laserShot(pos); break;
+                default: break; }
+             }
+        return pos;}
 
     private boolean isMovementPossible(Position position){
         Position position1 = getSphericalPos(position);
@@ -49,11 +51,24 @@ public class MarsRoverMove implements MarsRover {
     }
 
     private Position getSphericalPos(Position position) {
-        int x = position.getX();
-        int y = position.getY();
-        x = Math.floorMod(x - 1 + (size / 2), size) + 1 - (size / 2);
-        y = Math.floorMod(y - 1 + (size / 2), size) + 1 - (size / 2);
+        int x = Math.floorMod(position.getX() - 1 + (size / 2), size) + 1 - (size / 2);
+        int y = Math.floorMod(position.getY() - 1 + (size / 2), size) + 1 - (size / 2);
         return Position.of(x, y, position.getDirection());
     }
+    private void laserShot(Position position){
+        position=getSphericalPos(position);
+        int x=position.getX();
+        int y=position.getY();
+        Direction direction=position.getDirection();
+        int xOffSet=direction==Direction.EAST ? 1 : (direction==Direction.WEST ? -1:0);
+        int yOffSet=direction==Direction.NORTH ? 1 : (direction==Direction.SOUTH ? -1:0);
+        for(int lRange=0;lRange<this.range;lRange++){
+            x+= xOffSet;
+            y+=yOffSet;
+            Position position1=getSphericalPos(Position.of(x,y,direction));
+            if(this.obstacles.removeIf(tmpObst->position1.getY()==getSphericalPos(tmpObst).getY()&&position1.getX()==getSphericalPos(tmpObst).getX())) return;
+        }
+    }
 
-  }
+
+}
