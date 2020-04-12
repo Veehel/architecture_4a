@@ -56,19 +56,15 @@ public class MarsRoverMove implements MarsRover {
         return Position.of(x, y, position.getDirection());
     }
     private void laserShot(Position position){
-        position=getSphericalPos(position);
-        int x=position.getX();
-        int y=position.getY();
+        position=getSphericalPos(position); int x=position.getX(); int y=position.getY();
         Direction direction=position.getDirection();
         int xOffSet=direction==Direction.EAST ? 1 : (direction==Direction.WEST ? -1:0);
         int yOffSet=direction==Direction.NORTH ? 1 : (direction==Direction.SOUTH ? -1:0);
         for(int lRange=0;lRange<this.range;lRange++){
-            x+= xOffSet;
-            y+=yOffSet;
+            x+= xOffSet; y+=yOffSet;
             Position position1=getSphericalPos(Position.of(x,y,direction));
             if(this.obstacles.removeIf(tmpObst->position1.getY()==getSphericalPos(tmpObst).getY()&&position1.getX()==getSphericalPos(tmpObst).getX())) return;
-        }
-    }
+    }    }
 
 
 }
