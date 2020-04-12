@@ -7,15 +7,20 @@ import static java.lang.Math.round;
 
 public class Mars implements PlanetMap{
 
-    private final int xMax;
-    private final int xMin;
-    private final int yMax;
-    private final int yMin;
+
     private final int size=100;
+
+    public int getSize() {
+        return size;
+    }
+
+    public int[][] getMars() {
+        return mars;
+    }
+
     private final int [][] mars;
 
     public Mars() {
-        this.xMax = 50; this.xMin = -49; this.yMax =50; this.yMin = -49;
         this.mars = new int[this.size][this.size];
         int x, y;
         for (y = 0; y < this.size; y++) { for (x = 0; x < this.size; x++) { this.mars[x][y] = 0; } }

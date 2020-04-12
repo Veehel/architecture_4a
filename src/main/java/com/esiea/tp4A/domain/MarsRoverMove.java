@@ -8,7 +8,6 @@ public class MarsRoverMove implements MarsRover {
 
     private final Position position;
     private final Set<Position> obstacles;
-    private final boolean foundObstacle=false;
     private final int size=100;
     public MarsRoverMove(){
         this.position=Position.of(0,0,Direction.NORTH);
