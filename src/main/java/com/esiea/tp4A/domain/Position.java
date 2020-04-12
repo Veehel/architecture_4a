@@ -54,6 +54,7 @@ public interface Position {
             else if (this.y == -49 && this.direction == Direction.SOUTH) return Position.of(this.getX(), 50, this.getDirection());
             else if (this.getDirection() == Direction.NORTH) return Position.of(this.getX(), this.getY() +1, this.getDirection());
             else if (this.getDirection() == Direction.SOUTH); return Position.of(this.getX(), this.getY() -1, this.getDirection());
+
            // return Position.of(this.getX(), this.getY(), this.getDirection());
         }
 
