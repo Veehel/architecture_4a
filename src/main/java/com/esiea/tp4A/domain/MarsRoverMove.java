@@ -8,7 +8,7 @@ public class MarsRoverMove implements MarsRover {
 
     private final Position position;
     private final Set<Position> obstacles;
-    final boolean foundObstacle=false;
+    private final boolean foundObstacle=false;
     private final int size=100;
     public MarsRoverMove(){
         this.position=Position.of(0,0,Direction.NORTH);
@@ -29,44 +29,16 @@ public class MarsRoverMove implements MarsRover {
     }
 
     public Position move (String command) {
-        Position pos=this.position;
-        Position tempo;
-        boolean shot = false;
+        Position pos=this.position; Position tempo; boolean shot = false;
+        for (char commandLine:command.toCharArray()) { switch (commandLine){
+                case 's' : shot = true; tempo=pos; break;
+                case 'f' : tempo= pos.forwardX(); break;
+                case 'b' : tempo = pos.backwardX(); break;
+                case 'l' : tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().left());break;
+                case 'r' : tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().right());break;
+                default: tempo=pos; break; } tempo=getSphericalPos(tempo);
+            if(isMovementPossible(tempo)){ pos=tempo; } else { if (shot) { this.obstacles.remove(tempo); }} shot = false; } return pos;}
 
-        for (char commandLine:command.toCharArray()) {
-            switch (commandLine){
-                case 's' : // Si on a un 's', on le garde en mémoire en attendant la prochaine instruction
-                    shot = true;
-                    tempo=pos;
-                    break;
-                case 'f' :
-                    tempo= pos.forwardX();
-                    break;
-                case 'b' :
-                    tempo = pos.backwardX();
-                    break;
-                case 'l' :
-                    tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().left());// juste un changement de direction
-                    break;
-                case 'r' :
-                    tempo = Position.of(pos.getX(), pos.getY(), pos.getDirection().right());
-                    break;
-                default:
-                    tempo=pos;
-                    break;
-            }
-            tempo=getSphericalPos(tempo);
-            if(isMovementPossible(tempo)){ // si pas d'obstacle affectation définitive
-                pos=tempo;
-            } else { // si obstacle, on regarde si 's' avant
-                if (shot) {
-                    this.obstacles.remove(tempo); // on détruit l'obstacle
-                }
-            }
-            shot = false; // On reset la valeur pour les prochains mouvements
-        }
-        return pos;
-    }
     private boolean isMovementPossible(Position position){
         Position position1 = getSphericalPos(position);
         for (Position obs: this.obstacles ){
@@ -74,16 +46,14 @@ public class MarsRoverMove implements MarsRover {
             if(obsPos.getX()==position1.getX() && obsPos.getY()==position1.getY()) {
             return false;
             }
-        }
-        return true;
+        }return true;
     }
+
     private Position getSphericalPos(Position position) {
         int x = position.getX();
         int y = position.getY();
-
         x = Math.floorMod(x - 1 + (size / 2), size) + 1 - (size / 2);
         y = Math.floorMod(y - 1 + (size / 2), size) + 1 - (size / 2);
-
         return Position.of(x, y, position.getDirection());
     }
 
