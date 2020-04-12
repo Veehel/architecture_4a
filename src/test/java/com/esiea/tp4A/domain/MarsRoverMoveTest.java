@@ -2,11 +2,7 @@ package com.esiea.tp4A.domain;
 
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 class MarsRoverMoveTest {
 
@@ -81,8 +77,6 @@ class MarsRoverMoveTest {
         Position newPosition = marsRover.move("b");
         Assertions.assertThat(newPosition).isEqualTo(Position.of(31, 14, Direction.EAST));
     }
-<<<<<<< HEAD
-=======
 
     @Test
     void back_move_west() {
@@ -92,5 +86,4 @@ class MarsRoverMoveTest {
         Assertions.assertThat(newPosition).isEqualTo(Position.of(33, 14, Direction.WEST));
     }
 
->>>>>>> ac323c1... limit move and them tests
 }

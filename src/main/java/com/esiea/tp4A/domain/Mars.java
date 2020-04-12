@@ -7,32 +7,6 @@ import static java.lang.Math.round;
 
 public class Mars implements PlanetMap{
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public final int xMax;
-    public final int xMin;
-    public final int yMax;
-    public final int yMin;
-    public final int size=100;
-    public final int [][] mars;
-=======
-=======
->>>>>>> 7c62e5a... Correction Korekto
-    private final int xMax;
-    private final int xMin;
-    private final int yMax;
-    private final int yMin;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
->>>>>>> ac323c1... limit move and them tests
-=======
-    private  final int size=100;
-=======
-    private final int size=100;
->>>>>>> dd6a752... size corrections
-=======
 
     private final int size=100;
 
@@ -44,10 +18,8 @@ public class Mars implements PlanetMap{
         return mars;
     }
 
->>>>>>> 16fb45d... correcting test
     private final int [][] mars;
 
->>>>>>> 7c62e5a... Correction Korekto
     public Mars() {
         this.mars = new int[this.size][this.size];
         int x, y;
