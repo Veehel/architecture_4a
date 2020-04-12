@@ -37,4 +37,60 @@ public class MaxPositionTest {
         Assertions.assertThat(newPosition).isEqualTo(Position.of(50, 14, Direction.WEST));
     }
 
+    @Test
+    void forward_EAST_max(){
+        Position position = Position.of(50,13, Direction.EAST);
+        Position newPosition = position.forwardX();
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(-49, 13, Direction.EAST));
+    }
+
+    @Test
+    void backward_EAST_max(){
+        Position position = Position.of(-49,13, Direction.EAST);
+        Position newPosition = position.backwardX();
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(50, 13, Direction.EAST));
+    }
+
+    @Test
+    void forward_WEST_max(){
+        Position position = Position.of(-49,13, Direction.WEST);
+        Position newPosition = position.forwardX();
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(50, 13, Direction.WEST));
+    }
+
+    @Test
+    void backward_WEST_max(){
+        Position position = Position.of(50,13, Direction.WEST);
+        Position newPosition = position.backwardX();
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(-49, 13, Direction.WEST));
+    }
+
+    @Test
+    void forward_NORTH_max(){
+        Position position = Position.of(12,50, Direction.NORTH);
+        Position newPosition = position.forwardX();
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(12, -49, Direction.NORTH));
+    }
+
+    @Test
+    void backward_NORTH_max(){
+        Position position = Position.of(12,-49, Direction.NORTH);
+        Position newPosition = position.backwardX();
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(12, 50, Direction.NORTH));
+    }
+
+    @Test
+    void forward_SOUTH_max(){
+        Position position = Position.of(12,-49, Direction.SOUTH);
+        Position newPosition = position.forwardX();
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(12, 50, Direction.SOUTH));
+    }
+
+    @Test
+    void backward_SOUTH_max(){
+        Position position = Position.of(12,50, Direction.SOUTH);
+        Position newPosition = position.backwardX();
+        Assertions.assertThat(newPosition).isEqualTo(Position.of(12, -49, Direction.SOUTH));
+    }
+
 }

@@ -83,5 +83,12 @@ public class PositionTest {
         Assertions.assertThat(newPosition).isEqualTo(Position.of(13, 13, Direction.WEST));
     }
 
+    @Test
+    void string(){
+        Position position = Position.of(12,13, Direction.WEST);
+        String stringPosition = position.toString();
+        Assertions.assertThat(stringPosition).isEqualTo("FixedPosition{x=12, y=13, direction=WEST" + '}');
+    }
+
 
 }
