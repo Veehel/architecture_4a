@@ -16,7 +16,7 @@ public class MarsObstacleTest {
     @ParameterizedTest(name = "({0}, {1}) {2}")
     @CsvSource({"0, 0, NORTH", "5, 35, SOUTH", "8, 2, EAST", "-5, -15, WEST", "-9,-9, NORTH"})
     void initialize(int x, int y, Direction direction) throws NoSuchFieldException,IllegalAccessException{
-        MarsRover marsRover= new MarsRoverMove();
+        MarsRover marsRover= new MarsRoverMove(x,y,direction);
         MarsRover nmarsRover = marsRover.initialize(Position.of(x,y,direction));
         Field pos=marsRover.getClass().getDeclaredField("position");
         pos.setAccessible(true);
@@ -25,11 +25,13 @@ public class MarsObstacleTest {
         assertEquals(y,position.getY());
         assertEquals(direction,position.getDirection());
     }
+
+
     @Test
     void moveObstacles(){
-        MarsRover nmarsRover=new MarsRoverMove();
+        MarsRover nmarsRover=new MarsRoverMove(0,0,Direction.NORTH);
         MarsRover marsRover = nmarsRover.initialize(Position.of(0, 0, Direction.NORTH));
-       // marsRover.configureLaserRange(0);
+        // marsRover.configureLaserRange(0);
         PlanetMap planetMap=()->{
             HashSet<Position> map= new HashSet<>();
             map.add(Position.of(0,1,null));
@@ -44,7 +46,7 @@ public class MarsObstacleTest {
 
     @Test
     void updateMap() throws NoSuchFieldException,IllegalAccessException{
-        MarsRover marsRover = new MarsRoverMove();
+        MarsRover marsRover = new MarsRoverMove(0,0,Direction.NORTH);
         PlanetMap planetMap = new Mars();
         MarsRover nMarsRover = marsRover.updateMap(planetMap);
         Set<Position> obstacles= planetMap.obstaclePositions();
@@ -66,3 +68,4 @@ public class MarsObstacleTest {
         assertEquals(0,positionSet.size());
     }
 }
+

@@ -14,7 +14,7 @@ public class MarsRoverLaserTest {
     @DisplayName("MarsRover Configure Laser Range")
     @CsvSource({"0, 0", "1, 1", "25, 25", "75, 75", "-1, 0"})
     void configLaserRange(int range,int testRange) throws NoSuchFieldException,IllegalAccessException{
-        MarsRover marsRover= new MarsRoverMove();
+        MarsRover marsRover= new MarsRoverMove(0,0,Direction.NORTH);
         MarsRover nmarsRover = marsRover.configureLaserRange(range);
         Field range1=marsRover.getClass().getDeclaredField("range");
         range1.setAccessible(true);
@@ -27,7 +27,7 @@ public class MarsRoverLaserTest {
         "'sf', 0, 1, NORTH", "'fsflb', 1, 1, WEST", "'rflflsf', 0, 1, WEST", "'bbsfff', 0, 0, NORTH", "'lsrf', 0, 0, NORTH", "'llsb', 0, 0, SOUTH", "'rslf', 0, 0, NORTH",
         "'lsffffsffff', -5, 0, WEST", "'lsffffsfffsf', -6, 0, WEST"})
     void moveObstaclewithLaser(String command, int x, int y, Direction dir) {
-        MarsRover marsRover = new MarsRoverMove();
+        MarsRover marsRover = new MarsRoverMove(x,y,dir);
         marsRover = marsRover.initialize(Position.of(0, 0, Direction.NORTH));
         marsRover = marsRover.configureLaserRange(2);
 

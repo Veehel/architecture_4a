@@ -43,7 +43,7 @@ public interface Position {
 
         public Position forwardX() {
             if (this.x == 50 && this.direction == Direction.EAST) return Position.of(-49, this.getY(), this.getDirection());
-           else if (this.x == -49 && this.direction == Direction.WEST) return Position.of(50, this.getY(), this.getDirection());
+            else if (this.x == -49 && this.direction == Direction.WEST) return Position.of(50, this.getY(), this.getDirection());
             else if (this.getDirection() == Direction.EAST) return Position.of(this.getX() +1, this.getY(), this.getDirection());
             else if (this.getDirection() == Direction.WEST) return Position.of(this.getX() -1, this.getY(), this.getDirection());
             return forwardY();
@@ -54,7 +54,7 @@ public interface Position {
             else if (this.y == -49 && this.direction == Direction.SOUTH) return Position.of(this.getX(), 50, this.getDirection());
             else if (this.getDirection() == Direction.NORTH) return Position.of(this.getX(), this.getY() +1, this.getDirection());
             else if (this.getDirection() == Direction.SOUTH); return Position.of(this.getX(), this.getY() -1, this.getDirection());
-           // return Position.of(this.getX(), this.getY(), this.getDirection());
+            // return Position.of(this.getX(), this.getY(), this.getDirection());
         }
 
         public Position backwardX() {
@@ -70,7 +70,7 @@ public interface Position {
             else if (this.y == 50 && this.direction == Direction.SOUTH) return Position.of(this.getX(), -49, this.getDirection());
             else if (this.getDirection() == Direction.NORTH) return Position.of(this.getX(), this.getY() -1, this.getDirection());
             else if (this.getDirection() == Direction.SOUTH);return Position.of(this.getX(), this.getY() +1, this.getDirection());
-           // return Position.of(this.getX(), this.getY(), this.getDirection());
+            // return Position.of(this.getX(), this.getY(), this.getDirection());
         }
 
         @Override

@@ -8,9 +8,9 @@ public class MarsRoverMove implements MarsRover {
     private final Position position;
     private final Set<Position> obstacles;
     private final int size=100;
-    private final int range;
-    public MarsRoverMove(){
-        this.position=Position.of(0,0,Direction.NORTH);
+    private int range;
+    public MarsRoverMove(int x, int y, Direction direction){
+        this.position=Position.of(x,y,direction);
         this.obstacles=new HashSet<>();
         this.range=0;
 
@@ -20,6 +20,7 @@ public class MarsRoverMove implements MarsRover {
         this.obstacles=obstacles;
         this.range=range;
     }
+
     @Override
     public MarsRover initialize(Position position){return new MarsRoverMove(position, this.obstacles,this.range);}
     @Override
@@ -31,13 +32,13 @@ public class MarsRoverMove implements MarsRover {
     public Position move (String command) {
         Position pos=this.position; Position tempo ; boolean shot = false;
         for (char commandLine:command.toCharArray()) { switch (commandLine){
-                case 'f' : tempo= getSphericalPos(pos.forwardX());if(isMovementPossible(tempo)){pos=tempo;} break;
-                case 'b' : tempo = getSphericalPos(pos.backwardX());if(isMovementPossible(tempo)){pos=tempo;} break;
-                case 'l' : pos = Position.of(pos.getX(), pos.getY(), pos.getDirection().left());break;
-                case 'r' : pos = Position.of(pos.getX(), pos.getY(), pos.getDirection().right());break;
-                case 's' : laserShot(pos); break;
-                default: break; }
-             }
+            case 'f' : tempo= getSphericalPos(pos.forwardX());if(isMovementPossible(tempo)){pos=tempo;} break;
+            case 'b' : tempo = getSphericalPos(pos.backwardX());if(isMovementPossible(tempo)){pos=tempo;} break;
+            case 'l' : pos = Position.of(pos.getX(), pos.getY(), pos.getDirection().left());break;
+            case 'r' : pos = Position.of(pos.getX(), pos.getY(), pos.getDirection().right());break;
+            case 's' : laserShot(pos); break;
+            default: break; }
+        }
         return pos;}
 
     private boolean isMovementPossible(Position position){
@@ -45,7 +46,7 @@ public class MarsRoverMove implements MarsRover {
         for (Position obs: this.obstacles ){
             Position obsPos=getSphericalPos(obs);
             if(obsPos.getX()==position1.getX() && obsPos.getY()==position1.getY()) {
-            return false;
+                return false;
             }
         }return true;
     }
@@ -64,7 +65,7 @@ public class MarsRoverMove implements MarsRover {
             x+= xOffSet; y+=yOffSet;
             Position position1=getSphericalPos(Position.of(x,y,direction));
             if(this.obstacles.removeIf(tmpObst->position1.getY()==getSphericalPos(tmpObst).getY()&&position1.getX()==getSphericalPos(tmpObst).getX())) return;
-    }    }
+        }    }
 
 
 }
