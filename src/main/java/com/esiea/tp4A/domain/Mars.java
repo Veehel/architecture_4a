@@ -10,9 +10,7 @@ public class Mars implements PlanetMap{
 
     private final int size=100;
 
-    public int getSize() {
-        return size;
-    }
+    public int getSize() {return size;}
 
     public int[][] getMars() {
         return mars;
