@@ -8,13 +8,13 @@ public class MarsRoverMove implements MarsRover {
     private final Position position;
     private final Set<Position> obstacles;
     private final int size=100;
-    private int range;
+    private final int range;
     public MarsRoverMove(int x, int y, Direction direction){
         this.position=Position.of(x,y,direction);
         this.obstacles=new HashSet<>();
         this.range=0;
-
     }
+
     public MarsRoverMove(Position position, Set<Position> obstacles,int range){
         this.position= position;
         this.obstacles=obstacles;
@@ -27,6 +27,7 @@ public class MarsRoverMove implements MarsRover {
     public MarsRover updateMap(PlanetMap planetMap){return new MarsRoverMove(this.position,planetMap.obstaclePositions(),this.range);}
     @Override
     public MarsRover configureLaserRange(int range) { return new MarsRoverMove(this.position,this.obstacles,Math.max(range,0)); }
+
     public Position getPosition(){ return position; }
 
     public Position move (String command) {
@@ -56,6 +57,7 @@ public class MarsRoverMove implements MarsRover {
         int y = Math.floorMod(position.getY() - 1 + (size / 2), size) + 1 - (size / 2);
         return Position.of(x, y, position.getDirection());
     }
+
     private void laserShot(Position position){
         position=getSphericalPos(position); int x=position.getX(); int y=position.getY();
         Direction direction=position.getDirection();
@@ -66,6 +68,5 @@ public class MarsRoverMove implements MarsRover {
             Position position1=getSphericalPos(Position.of(x,y,direction));
             if(this.obstacles.removeIf(tmpObst->position1.getY()==getSphericalPos(tmpObst).getY()&&position1.getX()==getSphericalPos(tmpObst).getX())) return;
         }    }
-
 
 }
