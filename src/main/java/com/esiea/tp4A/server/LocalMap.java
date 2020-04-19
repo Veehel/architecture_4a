@@ -5,7 +5,7 @@ import com.esiea.tp4A.domain.*;
 import java.util.HashSet;
 
 public class LocalMap {
-    private Mars map;
+    private final Mars map;
     private HashSet<Player> players;
 
     public LocalMap() {
@@ -25,7 +25,5 @@ public class LocalMap {
         players.remove(p);
     }
 
-    public Mars getMap() {
-        return map;
-    }
+   // public Mars getMap() {return map;}
 }
