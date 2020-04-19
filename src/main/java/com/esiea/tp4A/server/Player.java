@@ -8,8 +8,8 @@ enum PlayerStatus {
 };
 
 public class Player {
-    private String name;
-    public PlayerStatus status;
+    private final String name;
+    public final PlayerStatus status;
     private MarsRover rover;
 
     Player(String inName) {

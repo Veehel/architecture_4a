@@ -5,9 +5,9 @@ import com.esiea.tp4A.domain.*;
 import java.util.HashSet;
 
 public class LocalMap {
-    static LocalMap localMap = new LocalMap();
-    private Mars map;
-    private HashSet<Player> players;
+    private static LocalMap localMap = new LocalMap();
+    private final Mars map;
+    private final HashSet<Player> players;
 
     private LocalMap() {
         map = new Mars();
