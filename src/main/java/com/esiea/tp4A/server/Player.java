@@ -9,7 +9,7 @@ enum PlayerStatus {
 
 public class Player {
     private String name;
-    public PlayerStatus status;
+    private PlayerStatus status;
     private MarsRover rover;
 
     Player(String inName) {
