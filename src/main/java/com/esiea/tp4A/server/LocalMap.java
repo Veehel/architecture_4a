@@ -26,11 +26,12 @@ public class LocalMap {
         return players.contains(p);
     }
 
-    void removePlayer(Player p) {
+   /* void removePlayer(Player p) {
         players.remove(p);
     }
 
     Mars getMap() {
         return map;
     }
+    */
 }

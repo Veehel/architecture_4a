@@ -40,17 +40,17 @@ public class PlayerDatabase {
      * Remove a player from the database with his name
      * @param name : name of the player
      */
-    public void remove(String name) {
+ /*   public void remove(String name) {
         Player p = playerMap.remove(name);
-    }
+    }*/
 
     /**
      * Remove a player from the database
      * @param p : player object
      */
-    public void remove(Player p) {
+    /*public void remove(Player p) {
         playerMap.remove(p.getName());
-    }
+    }*/
 
     /**
      * Finds a player in the database

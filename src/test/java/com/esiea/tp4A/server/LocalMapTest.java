@@ -9,6 +9,7 @@ public class LocalMapTest {
         Assertions.assertThat(LocalMap.get()).isNotNull();
     }
 
+    @Test
     void players() {
         Player p = new Player("test");
         LocalMap.get().addPlayer(p);
