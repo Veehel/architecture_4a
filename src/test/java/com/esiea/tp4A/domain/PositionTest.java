@@ -90,5 +90,28 @@ public class PositionTest {
         Assertions.assertThat(stringPosition).isEqualTo("FixedPosition{x=12, y=13, direction=WEST" + '}');
     }
 
+    @Test
+    void wrong_string(){
+        Position position = Position.of(12,13, Direction.WEST);
+        String stringPosition = position.toString();
+        Assertions.assertThat(stringPosition).isNotEqualTo("FixedPosition{x=12, y=13, direction=NORTH" + '}');
+    }
+
+
+    @Test
+    void equals(){
+        Position position = Position.of(5,4, Direction.NORTH);
+        Assertions.assertThat(position.equals(null)).isFalse();
+        Assertions.assertThat(position.equals(Position.of(5,4, Direction.NORTH))).isTrue();//tout est juste
+        Assertions.assertThat(position.equals(Position.of(5,4, Direction.SOUTH))).isFalse();//mauvaise direction
+        Assertions.assertThat(position.equals(Position.of(-5,4, Direction.NORTH))).isFalse();//mauvais X
+        Assertions.assertThat(position.equals(Position.of(5,-4, Direction.NORTH))).isFalse();//mauvais Y
+        Assertions.assertThat(position.equals(Position.of(-5,4, Direction.SOUTH))).isFalse();
+        Assertions.assertThat(position.equals(Position.of(5,-4, Direction.SOUTH))).isFalse();
+        Assertions.assertThat(position.equals(Position.of(-5,-4, Direction.NORTH))).isFalse();
+        Assertions.assertThat(position.equals(Position.of(-5,-4, Direction.SOUTH))).isFalse();//tout faux
+
+    }
+
 
 }
