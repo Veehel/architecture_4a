@@ -5,9 +5,9 @@ import java.util.LinkedList;
 
 public class PlayerDatabase {
     // base de données accessible partout
-    static PlayerDatabase database = new PlayerDatabase();
+    private static PlayerDatabase database = new PlayerDatabase();
 
-    private HashMap<String, Player> playerMap;
+    private final HashMap<String, Player> playerMap;
 
     private PlayerDatabase() {
         playerMap = new HashMap<String, Player>();
