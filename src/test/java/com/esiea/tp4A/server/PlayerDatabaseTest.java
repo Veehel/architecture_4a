@@ -5,20 +5,22 @@ import org.junit.jupiter.api.Test;
 
 public class PlayerDatabaseTest {
     @Test
-    void find_Players() {
-        PlayerDatabase db = PlayerDatabase.get();
+    void addingPlayers() {
+        PlayerDatabase db = new PlayerDatabase();
         Player p = db.add("testPlayer");
         Assertions.assertThat(p.getName()).isEqualTo("testPlayer");
         Assertions.assertThat(db.find("testPlayer") == p);
     }
 
     @Test
-    void null_Players() {
-        PlayerDatabase db = PlayerDatabase.get();
-        Player p = db.add("testPlayer");
-        Assertions.assertThat(p.getName()).isEqualTo("testPlayer");
-        Assertions.assertThat(db.find("nullPlayer") == null);
+    void removingPlayers() {
+        PlayerDatabase db = new PlayerDatabase();
+        Player p1 = db.add("testPlayer1");
+        Player p2 = db.add("testPlayer2");
+        db.remove("testPlayer1");
+        db.remove(p2);
+
+        Assertions.assertThat(db.find("testPlayer1")).isNull();
+        Assertions.assertThat(db.find("testPlayer2")).isNull();
     }
-
-
 }

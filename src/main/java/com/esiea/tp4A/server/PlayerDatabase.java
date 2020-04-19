@@ -1,15 +1,16 @@
 package com.esiea.tp4A.server;
 
+
+import com.esiea.tp4A.server.Player;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class PlayerDatabase {
     // base de données accessible partout
-    private static PlayerDatabase database = new PlayerDatabase();
+    private HashMap<String, Player> playerMap;
 
-    private final HashMap<String, Player> playerMap;
-
-    private PlayerDatabase() {
+    public PlayerDatabase() {
         playerMap = new HashMap<String, Player>();
     }
 
@@ -17,9 +18,7 @@ public class PlayerDatabase {
      * Get the database singleton
      * @return PlayerDatabase
      */
-    public static PlayerDatabase get() {
-        return database;
-    }
+    //public static PlayerDatabase get() { return database;}
 
     /**
      * Add a player to the database if it doesn't exist
@@ -33,6 +32,7 @@ public class PlayerDatabase {
             // Add the player
             playerMap.put(name, p);
         }
+
         return p;
     }
 
@@ -40,17 +40,17 @@ public class PlayerDatabase {
      * Remove a player from the database with his name
      * @param name : name of the player
      */
- /*   public void remove(String name) {
+    public void remove(String name) {
         Player p = playerMap.remove(name);
-    }*/
+    }
 
     /**
      * Remove a player from the database
      * @param p : player object
      */
-    /*public void remove(Player p) {
+    public void remove(Player p) {
         playerMap.remove(p.getName());
-    }*/
+    }
 
     /**
      * Finds a player in the database

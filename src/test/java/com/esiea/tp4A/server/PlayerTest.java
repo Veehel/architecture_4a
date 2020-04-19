@@ -14,17 +14,16 @@ public class PlayerTest {
     }
 
     @Test
+    void aliveTest() {
+        Player p = new Player("test");
+        Assertions.assertThat(p.getStatus() != PlayerStatus.dead);
+    }
+
+    @Test
     void getRover() {
         MarsRoverMove marsRover = new MarsRoverMove(0, 0, Direction.NORTH);
         Player p = new Player("test");
         p.setRover(marsRover);
         Assertions.assertThat(p.getRover() == marsRover);
     }
-    
-    @Test
-    void new_player_status(){
-        Player player = new Player("name");
-        Assertions.assertThat(player.status).isEqualTo(PlayerStatus.alive);
-    }
-
 }

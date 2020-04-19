@@ -5,33 +5,27 @@ import com.esiea.tp4A.domain.*;
 import java.util.HashSet;
 
 public class LocalMap {
-    private static LocalMap localMap = new LocalMap();
-    private final Mars map;
-    private final HashSet<Player> players;
+    private Mars map;
+    private HashSet<Player> players;
 
-    private LocalMap() {
+    public LocalMap() {
         map = new Mars();
         players = new HashSet<Player>();
     }
 
-    public static LocalMap get() {
-        return localMap;
-    }
-
-    void addPlayer(Player p) {
+    public void addPlayer(Player p) {
         players.add(p);
     }
 
-    Boolean hasPlayer(Player p) {
+    public Boolean hasPlayer(Player p) {
         return players.contains(p);
     }
 
-   /* void removePlayer(Player p) {
+    public void removePlayer(Player p) {
         players.remove(p);
     }
 
-    Mars getMap() {
+    public Mars getMap() {
         return map;
     }
-    */
 }

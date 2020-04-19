@@ -6,14 +6,10 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 public class Server {
-    void Start() {
-        HttpServer server = null;
-        try {
-            server = HttpServer.create(new InetSocketAddress("localhost", 8080), 0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        server.createContext("/api/player", new PlayerHttpHandler());
+    void Start() throws IOException {
+        HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8080), 0);
+
+        server.createContext("/api/player", new PlayerHttpHandler(new PlayerDatabase(), new LocalMap()));
         server.start();
     }
 }

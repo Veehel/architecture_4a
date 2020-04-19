@@ -5,14 +5,12 @@ import org.junit.jupiter.api.Test;
 
 public class LocalMapTest {
     @Test
-    void getLocalMap() {
-        Assertions.assertThat(LocalMap.get()).isNotNull();
-    }
-
-    @Test
     void players() {
         Player p = new Player("test");
-        LocalMap.get().addPlayer(p);
-        Assertions.assertThat(LocalMap.get().hasPlayer(p)).isTrue();
+        LocalMap localMap = new LocalMap();
+        localMap.addPlayer(p);
+        Assertions.assertThat(localMap.hasPlayer(p)).isTrue();
+        localMap.removePlayer(p);
+        Assertions.assertThat(localMap.hasPlayer(p)).isFalse();
     }
 }
